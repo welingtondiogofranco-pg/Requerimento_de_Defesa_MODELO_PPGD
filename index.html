@@ -4,27 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Requerimento de Defesa | PPGD UEPG</title>
+  <meta name="description" content="Requerimento oficial para defesa de dissertação do PPGD – UEPG">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
   <style>
-    /* ========== ESTILOS GERAIS (TELA) ========== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    /* ========== DESIGN SYSTEM PPGD ========== */
+    :root {
+      --azul: #002855;
+      --azul-claro: #e8f0fb;
+      --ouro: #c9a135;
+      --fundo: #f7f8fb;
+      --card: #ffffff;
+      --texto: #1a1f2e;
+      --borda: #d1d5db;
+      --erro: #c7362b;
+      --ff-titulo: 'DM Serif Display', Georgia, serif;
+      --ff-corpo: 'DM Sans', system-ui, -apple-system, sans-serif;
+      --r-md: 12px;
+      --shadow-sm: 0 4px 12px rgba(0,0,0,0.05);
     }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f7f8fb;
+      font-family: var(--ff-corpo);
+      background: var(--fundo);
+      color: var(--texto);
       padding: 2rem 1rem;
+      line-height: 1.45;
     }
     .container {
       max-width: 1000px;
       margin: 0 auto;
-      background: white;
-      padding: 2rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      border-radius: 12px;
+      background: var(--card);
+      padding: 2.5rem;
+      border-radius: var(--r-md);
+      box-shadow: var(--shadow-sm);
     }
-    /* Cabeçalho */
+    /* CABEÇALHO (padrão PPGD) */
     .header-logos {
       display: flex;
       align-items: center;
@@ -33,76 +47,138 @@
       gap: 1rem;
       margin-bottom: 2rem;
       padding-bottom: 1rem;
-      border-bottom: 2px solid #002855;
+      border-bottom: 2px solid var(--azul);
     }
     .logo-img {
       height: 70px;
       width: auto;
       object-fit: contain;
     }
+    .header-center {
+      display: flex;
+      justify-content: center;
+      flex: 1;
+    }
+    @media (max-width: 640px) {
+      .header-logos { justify-content: center; flex-direction: column; }
+      .header-center { width: 100%; }
+      .container { padding: 1.5rem; }
+    }
+    /* TÍTULOS */
     h1 {
+      font-family: var(--ff-titulo);
       text-align: center;
-      color: #002855;
+      color: var(--azul);
       font-size: 1.9rem;
       margin-bottom: 0.25rem;
+      letter-spacing: -0.3px;
     }
     .subtitulo {
       text-align: center;
       font-size: 1rem;
-      margin-bottom: 2rem;
+      font-weight: 500;
       color: #4a5568;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--borda);
+      display: inline-block;
+      width: auto;
+      margin-left: auto;
+      margin-right: auto;
+      padding-bottom: 0.5rem;
     }
+    /* TEXTO INTRODUTÓRIO */
     .intro-text {
       margin-bottom: 1rem;
+      line-height: 1.6;
+      font-size: 1rem;
     }
-    /* Formulário */
+    /* FORMULÁRIO */
+    .form-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
     .form-group {
-      margin-bottom: 1.2rem;
+      display: flex;
+      flex-direction: column;
     }
     label {
-      display: block;
       font-weight: 600;
-      color: #002855;
+      color: var(--azul);
       margin-bottom: 0.3rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.3px;
     }
-    .required:after {
+    .required::after {
       content: " *";
-      color: #c7362b;
+      color: var(--erro);
+      font-weight: bold;
     }
     input, select, textarea {
       width: 100%;
-      padding: 0.7rem;
-      border: 1px solid #d1d5db;
+      padding: 0.7rem 0.75rem;
+      border: 1px solid var(--borda);
       border-radius: 8px;
-      font-family: inherit;
+      font-family: var(--ff-corpo);
       font-size: 0.95rem;
+      background: #fff;
+      transition: 0.2s;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--azul);
+      box-shadow: 0 0 0 3px rgba(0,40,85,0.1);
+    }
+    input.invalid, select.invalid, textarea.invalid {
+      border-color: var(--erro);
+      background-color: #fff5f5;
     }
     textarea {
       resize: vertical;
       min-height: 60px;
     }
     .row {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
     }
-    .row .form-group {
-      flex: 1;
+    @media (max-width: 680px) {
+      .row { grid-template-columns: 1fr; }
     }
-    /* Tabela da banca */
+    /* TABELA DA BANCA */
+    .banca-section {
+      margin: 1.5rem 0;
+    }
+    .banca-title {
+      font-weight: 700;
+      color: var(--azul);
+      margin-bottom: 1rem;
+      border-left: 4px solid var(--ouro);
+      padding-left: 0.75rem;
+      font-size: 1rem;
+    }
     .banca-table {
       width: 100%;
       border-collapse: collapse;
       margin: 1rem 0;
+      background: var(--azul-claro);
+      border-radius: 8px;
+      overflow: hidden;
     }
     .banca-table th, .banca-table td {
-      border: 1px solid #ccc;
-      padding: 0.5rem;
+      border: 1px solid var(--borda);
+      padding: 0.75rem;
       vertical-align: top;
     }
     .banca-table th {
-      background: #e8f0fb;
-      color: #002855;
+      background: var(--azul);
+      color: white;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-align: left;
+    }
+    .banca-table td {
+      background: white;
     }
     .banca-table textarea, .banca-table input {
       width: 100%;
@@ -112,90 +188,139 @@
       border-radius: 0;
       padding: 0.3rem 0;
       resize: vertical;
+      font-size: 0.9rem;
     }
-    /* Data local (Ponta Grossa) */
+    .banca-table textarea:focus, .banca-table input:focus {
+      outline: none;
+      border-bottom: 2px solid var(--azul);
+    }
+    .banca-table .atuation {
+      font-weight: 600;
+      color: var(--azul);
+      font-size: 0.9rem;
+    }
+    /* DATA LOCAL (Ponta Grossa) */
     .data-local {
       text-align: right;
-      margin: 1rem 0;
+      margin: 2rem 0 1rem;
       display: flex;
       justify-content: flex-end;
       align-items: center;
       gap: 0.5rem;
       flex-wrap: wrap;
+      font-size: 1rem;
     }
     .data-local span {
       font-style: italic;
+      color: var(--texto);
     }
     .data-local input[type="date"] {
       width: auto;
       display: inline-block;
       padding: 0.4rem 0.6rem;
+      border: none;
+      border-bottom: 1px dotted #555;
+      border-radius: 0;
+      background: transparent;
+      font-family: var(--ff-corpo);
+      font-size: 1rem;
+      color: var(--azul);
+      font-weight: 500;
     }
-    /* Assinaturas */
+    .data-local input[type="date"]:focus {
+      outline: none;
+      border-bottom: 2px solid var(--azul);
+    }
+    /* ASSINATURAS */
     .signatures {
       display: flex;
       justify-content: space-between;
-      margin-top: 2rem;
+      margin-top: 3rem;
       gap: 2rem;
       flex-wrap: wrap;
     }
     .signature-box {
       flex: 1;
       text-align: center;
-      border-top: 1px solid black;
+      border-top: 1px solid #000;
       padding-top: 0.5rem;
-      min-width: 180px;
+      min-width: 200px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      line-height: 1.4;
     }
-    /* Botões */
+    .signature-box .cargo {
+      font-size: 0.75rem;
+      color: #4a5568;
+      font-weight: 400;
+      margin-top: 0.2rem;
+    }
+    /* BOTÕES (padrão PPGD) */
     .actions {
-      margin-top: 2rem;
+      margin-top: 2.5rem;
       text-align: center;
-      padding-top: 1rem;
-      border-top: 1px solid #ddd;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--borda);
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
     .btn {
-      padding: 0.7rem 1.5rem;
-      background: #002855;
-      color: white;
+      padding: 0.75rem 1.5rem;
       border: none;
       border-radius: 40px;
+      font-weight: 600;
       cursor: pointer;
-      font-weight: bold;
-      margin: 0 0.5rem;
+      font-family: var(--ff-corpo);
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
-    .btn-secondary {
-      background: #c9a135;
-      color: #002855;
+    .btn-primario { background: var(--azul); color: white; }
+    .btn-primario:hover { background: #001e3c; transform: translateY(-2px); }
+    .btn-secundario { background: var(--ouro); color: var(--azul); }
+    .btn-secundario:hover { background: #b88f2a; transform: translateY(-2px); }
+    .btn-terciario { background: #e2e8f0; color: #2d3748; }
+    .btn-terciario:hover { background: #cbd5e0; }
+    /* TOAST DE ERRO */
+    .toast-erro {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--erro);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      display: none;
+      z-index: 1000;
+      max-width: 350px;
+      font-size: 0.9rem;
     }
-
-    /* ========== IMPRESSÃO - MESMA REGRA QUE FUNCIONOU ========== */
+    .toast-erro.visivel { display: block; animation: slideIn 0.3s; }
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    /* ========== IMPRESSÃO OTIMIZADA ========== */
     @media print {
-      /* Remove tudo que não é necessário */
-      body, .container {
+      body {
         background: white;
-        padding: 0 !important;
-        margin: 0 !important;
-        box-shadow: none;
+        padding: 0;
+        margin: 0;
       }
       .container {
         max-width: 100%;
+        box-shadow: none;
+        padding: 0;
+        border-radius: 0;
       }
-      .actions {
-        display: none;
-      }
-      /* Garante que nenhum elemento force quebra antes */
-      * {
-        page-break-before: auto !important;
-        page-break-after: auto !important;
-        page-break-inside: auto !important;
-        break-inside: auto !important;
-      }
-      /* Cabeçalho não quebra depois */
-      .header-logos, h1, .subtitulo {
-        page-break-after: avoid;
-        break-after: avoid;
-      }
-      /* Inputs e textareas ganham borda inferior */
+      .actions, .toast-erro { display: none !important; }
+      .header-logos { border-bottom: 2px solid #000; }
+      
+      /* Inputs e textareas */
       input, select, textarea {
         border: none !important;
         border-bottom: 1px solid #aaa !important;
@@ -203,34 +328,59 @@
         padding: 0.2rem 0 !important;
         background: transparent !important;
       }
-      /* Mantém a tabela */
+      
+      /* Tabela da banca */
+      .banca-table {
+        background: none !important;
+      }
       .banca-table th {
         background: #eee !important;
         color: black !important;
       }
-      /* Margens da página */
-      @page {
-        margin: 1.5cm;
+      .banca-table td {
+        background: white !important;
       }
-      /* Data local alinhada corretamente na impressão */
+      .banca-table textarea, .banca-table input {
+        border-bottom: 1px solid #aaa !important;
+      }
+      
+      /* Data local */
       .data-local {
         justify-content: flex-end;
       }
       .data-local input[type="date"] {
-        border-bottom: 1px solid #aaa !important;
-        padding: 0;
+        border-bottom: 1px solid #000 !important;
+      }
+      
+      /* Evitar quebras ruins */
+      .header-logos, h1, .subtitulo {
+        page-break-after: avoid;
+        break-after: avoid;
+      }
+      .signatures {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+      .banca-table {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+      
+      @page {
+        margin: 1.5cm;
+        size: A4;
       }
     }
   </style>
 </head>
 <body>
 <div class="container">
-  <!-- CABEÇALHO COM LOGOS -->
-  <div class="header-logos">
+  <!-- CABEÇALHO COM LOGOS (UEPG.jpg corrigido) -->
+  <header class="header-logos">
     <div><img src="ceppodi.png" alt="Ceppodi" class="logo-img" onerror="this.style.display='none'"></div>
-    <div><img src="uepg.jpg" alt="UEPG" class="logo-img" onerror="this.style.display='none'"></div>
+    <div class="header-center"><img src="UEPG.jpg" alt="UEPG" class="logo-img" onerror="this.style.display='none'"></div>
     <div><img src="secijur.png" alt="Secijur" class="logo-img" onerror="this.style.display='none'"></div>
-  </div>
+  </header>
 
   <h1>REQUERIMENTO DE DEFESA</h1>
   <div class="subtitulo">Mestrado em Direito – PPGD UEPG</div>
@@ -239,97 +389,141 @@
   <p class="intro-text">Vimos, pelo presente, solicitar providências para a realização de <strong>DEFESA</strong> de Mestrado do(a) pós-graduando(a):</p>
 
   <form id="formDefesa">
-    <div class="form-group">
-      <label class="required">NOME DO MESTRANDO</label>
-      <textarea rows="1" id="nomeMestrando" placeholder="Digite o nome completo"></textarea>
-    </div>
-    <div class="form-group">
-      <label class="required">TÍTULO DA DISSERTAÇÃO</label>
-      <textarea rows="2" id="titulo" placeholder="Digite o título"></textarea>
-    </div>
-    <div class="form-group">
-      <label>PALAVRAS-CHAVE</label>
-      <textarea rows="1" id="palavras" placeholder="Ex: Direito Penal, Processo Civil..."></textarea>
-    </div>
-    <div class="form-group">
-      <label>LINHA DE PESQUISA</label>
-      <select id="linha">
-        <option value="">Selecione...</option>
-        <option>I - Teorias e Práticas Jurídicas no Sistema Penal</option>
-        <option>II - Teorias e Práticas Jurídicas nas Relações Privadas e Socioeconômicas</option>
-        <option>III - Teorias e Práticas Jurídicas na Proteção de Direitos Fundamentais e Promoção de Políticas Públicas</option>
-      </select>
-    </div>
-    <div class="row">
+    <div class="form-grid">
+      <!-- DADOS DO MESTRANDO -->
       <div class="form-group">
-        <label class="required">DATA DA DEFESA</label>
-        <input type="date" id="data">
+        <label class="required" for="nomeMestrando">NOME DO MESTRANDO</label>
+        <textarea rows="1" id="nomeMestrando" placeholder="Digite o nome completo" required aria-required="true"></textarea>
       </div>
+
       <div class="form-group">
-        <label class="required">HORÁRIO</label>
-        <input type="time" id="hora">
+        <label class="required" for="titulo">TÍTULO DA DISSERTAÇÃO</label>
+        <textarea rows="2" id="titulo" placeholder="Digite o título completo da dissertação" required aria-required="true"></textarea>
       </div>
-    </div>
-    <div class="form-group">
-      <label>SALA / VIDEOCONFERÊNCIA</label>
-      <textarea rows="1" id="sala" placeholder="Link ou sala física"></textarea>
-    </div>
 
-    <label style="font-weight:bold; color:#002855;">MEMBROS DA BANCA (e-mail e telefones)</label>
-    <table class="banca-table">
-      <thead>
-        <tr><th>Membro (nome, telefone, e-mail)</th><th>IES / PPG</th><th>Atuação</th></tr>
-      </thead>
-      <tbody>
-        <tr><td><textarea rows="2" class="membro" placeholder="Ex.: Prof. Dr. João Silva – (42) 99999-9999 – joao@uepg.br"></textarea></td><td>UEPG / PPG</td><td><strong>Orientador (Presidente)</strong></td></tr>
-        <tr><td><textarea rows="2" class="membro" placeholder="Nome – telefone – e-mail"></textarea></td><td>UEPG / PPG</td><td><strong>Membro Interno</strong></td></tr>
-        <tr><td><textarea rows="2" class="membro" placeholder="Nome – telefone – e-mail"></textarea></td><td><input type="text" class="ies-externo" placeholder="Ex.: UFPR"></td><td><strong>Membro Externo</strong></td></tr>
-        <tr><td><textarea rows="2" class="membro" placeholder="Nome – telefone – e-mail"></textarea></td><td>UEPG / PPG</td><td><strong>Suplente</strong></td></tr>
-      </tbody>
-    </table>
+      <div class="form-group">
+        <label for="palavras">PALAVRAS-CHAVE</label>
+        <textarea rows="1" id="palavras" placeholder="Ex: Direito Penal, Processo Civil, Direitos Humanos..."></textarea>
+      </div>
 
-    <!-- DATA DE PONTA GROSSA - CORRIGIDA (mesma linha, calendário) -->
-    <div class="data-local">
-      <span>Ponta Grossa,</span>
-      <input type="date" id="dataLocal">
-    </div>
+      <div class="form-group">
+        <label for="linha">LINHA DE PESQUISA</label>
+        <select id="linha">
+          <option value="">Selecione...</option>
+          <option>I - Teorias e Práticas Jurídicas no Sistema Penal</option>
+          <option>II - Teorias e Práticas Jurídicas nas Relações Privadas e Socioeconômicas</option>
+          <option>III - Teorias e Práticas Jurídicas na Proteção de Direitos Fundamentais e Promoção de Políticas Públicas</option>
+        </select>
+      </div>
 
-    <div class="signatures">
-      <div class="signature-box">Assinatura do Orientador</div>
-      <div class="signature-box">Assinatura do Aluno</div>
+      <!-- DATA E HORÁRIO -->
+      <div class="row">
+        <div class="form-group">
+          <label class="required" for="data">DATA DA DEFESA</label>
+          <input type="date" id="data" required aria-required="true">
+        </div>
+        <div class="form-group">
+          <label class="required" for="hora">HORÁRIO</label>
+          <input type="time" id="hora" required aria-required="true">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="sala">SALA / VIDEOCONFERÊNCIA</label>
+        <textarea rows="1" id="sala" placeholder="Link da sala virtual ou número da sala física"></textarea>
+      </div>
+
+      <!-- BANCA EXAMINADORA -->
+      <div class="banca-section">
+        <div class="banca-title">MEMBROS DA BANCA EXAMINADORA</div>
+        <table class="banca-table">
+          <thead>
+            <tr>
+              <th style="width: 50%;">Membro (nome, telefone, e-mail)</th>
+              <th style="width: 25%;">IES / PPG</th>
+              <th style="width: 25%;">Atuação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><textarea rows="2" class="membro" placeholder="Ex.: Prof. Dr. João Silva – (42) 99999-9999 – joao@uepg.br" required aria-required="true"></textarea></td>
+              <td><input type="text" class="ies" value="UEPG / PPG" readonly></td>
+              <td class="atuation"><strong>Orientador (Presidente)</strong></td>
+            </tr>
+            <tr>
+              <td><textarea rows="2" class="membro" placeholder="Nome – telefone – e-mail" required aria-required="true"></textarea></td>
+              <td><input type="text" class="ies" value="UEPG / PPG" readonly></td>
+              <td class="atuation"><strong>Membro Interno</strong></td>
+            </tr>
+            <tr>
+              <td><textarea rows="2" class="membro" placeholder="Nome – telefone – e-mail" required aria-required="true"></textarea></td>
+              <td><input type="text" class="ies-externo" placeholder="Ex.: UFPR"></td>
+              <td class="atuation"><strong>Membro Externo</strong></td>
+            </tr>
+            <tr>
+              <td><textarea rows="2" class="membro" placeholder="Nome – telefone – e-mail"></textarea></td>
+              <td><input type="text" class="ies" value="UEPG / PPG" readonly></td>
+              <td class="atuation"><strong>Suplente</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- DATA DE PONTA GROSSA -->
+      <div class="data-local">
+        <span>Ponta Grossa,</span>
+        <input type="date" id="dataLocal" required aria-required="true">
+      </div>
+
+      <!-- ASSINATURAS -->
+      <div class="signatures">
+        <div class="signature-box">
+          Assinatura do Orientador
+          <div class="cargo">Presidente da Banca</div>
+        </div>
+        <div class="signature-box">
+          Assinatura do Mestrando(a)
+          <div class="cargo">Pós-graduando(a)</div>
+        </div>
+      </div>
     </div>
   </form>
 
   <div class="actions">
-    <button type="button" class="btn" onclick="window.print()">🖨️ Imprimir / Gerar PDF</button>
-    <button type="button" class="btn btn-secondary" id="btnLimpar">🗑️ Limpar formulário</button>
+    <button type="button" class="btn btn-terciario" id="btnLimpar">🗑️ Limpar</button>
+    <button type="button" class="btn btn-primario" id="btnImprimir">🖨️ Imprimir / Gerar PDF</button>
   </div>
 </div>
 
+<div class="toast-erro" id="toastErro"></div>
+
 <script>
   (function() {
-    // Campos normais (incluindo dataLocal)
+    // Campos do formulário
     const campos = ['nomeMestrando', 'titulo', 'palavras', 'linha', 'data', 'hora', 'sala', 'dataLocal'];
-    
-    // Salvar todos os dados (incluindo tabela)
+    const STORAGE_KEY = 'reqDefesaPPGD_v2';
+
+    // ============ PERSISTÊNCIA ============
     function salvarDados() {
-      let dados = {};
+      const dados = {};
       campos.forEach(id => {
         const el = document.getElementById(id);
         if (el) dados[id] = el.value;
       });
       // Salvar membros (textareas da tabela)
-      let membros = [];
+      const membros = [];
       document.querySelectorAll('.membro').forEach(ta => membros.push(ta.value));
-      let iesExternos = [];
-      document.querySelectorAll('.ies-externo').forEach(inp => iesExternos.push(inp.value));
       dados.membros = membros;
+      // Salvar IES externos
+      const iesExternos = [];
+      document.querySelectorAll('.ies-externo').forEach(inp => iesExternos.push(inp.value));
       dados.iesExternos = iesExternos;
-      localStorage.setItem('reqDefesaPPGD', JSON.stringify(dados));
+      
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(dados));
     }
 
     function restaurarDados() {
-      const saved = localStorage.getItem('reqDefesaPPGD');
+      const saved = localStorage.getItem(STORAGE_KEY);
       if (!saved) return;
       try {
         const dados = JSON.parse(saved);
@@ -347,10 +541,10 @@
             if (dados.iesExternos[idx] !== undefined) inp.value = dados.iesExternos[idx];
           });
         }
-      } catch(e) {}
+      } catch(e) { console.warn(e); }
     }
 
-    // Auto-resize para textareas (expansíveis)
+    // ============ AUTO-RESIZE TEXTAREAS ============
     function autoResizeTextareas() {
       document.querySelectorAll('textarea').forEach(ta => {
         ta.style.height = 'auto';
@@ -358,39 +552,118 @@
         ta.addEventListener('input', function() {
           this.style.height = 'auto';
           this.style.height = this.scrollHeight + 'px';
-          salvarDados();
         });
       });
     }
 
-    // Eventos para salvar automaticamente
+    // ============ VALIDAÇÃO ============
+    function mostrarErro(msg) {
+      const toast = document.getElementById('toastErro');
+      toast.textContent = '⚠️ ' + msg;
+      toast.classList.add('visivel');
+      setTimeout(() => toast.classList.remove('visivel'), 4000);
+    }
+
+    function validarFormulario() {
+      // Remove marcações anteriores
+      document.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
+      
+      // Campos obrigatórios principais
+      const obrigatorios = [
+        { id: 'nomeMestrando', nome: 'nome do mestrando' },
+        { id: 'titulo', nome: 'título da dissertação' },
+        { id: 'data', nome: 'data da defesa' },
+        { id: 'hora', nome: 'horário' },
+        { id: 'dataLocal', nome: 'data local' }
+      ];
+
+      for (const campo of obrigatorios) {
+        const el = document.getElementById(campo.id);
+        if (!el || !el.value.trim()) {
+          if (el) el.classList.add('invalid');
+          mostrarErro(`Preencha o campo: ${campo.nome}`);
+          if (el) el.focus();
+          return false;
+        }
+      }
+
+      // Validar membros da banca (pelo menos os 3 primeiros)
+      const membros = document.querySelectorAll('.membro');
+      for (let i = 0; i < 3; i++) {
+        if (!membros[i].value.trim()) {
+          membros[i].classList.add('invalid');
+          mostrarErro(`Preencha os dados do membro ${i + 1} da banca`);
+          membros[i].focus();
+          return false;
+        }
+      }
+
+      // Validar IES externo se houver membro externo
+      const iesExterno = document.querySelector('.ies-externo');
+      if (membros[2].value.trim() && !iesExterno.value.trim()) {
+        iesExterno.classList.add('invalid');
+        mostrarErro('Informe a instituição do membro externo');
+        iesExterno.focus();
+        return false;
+      }
+
+      return true;
+    }
+
+    // ============ EVENTOS ============
     function adicionarEventos() {
+      // Campos principais
       campos.forEach(id => {
         const el = document.getElementById(id);
         if (el) {
-          el.addEventListener('input', salvarDados);
-          el.addEventListener('change', salvarDados);
+          el.addEventListener('input', () => {
+            salvarDados();
+            el.classList.remove('invalid');
+          });
+          el.addEventListener('change', () => {
+            salvarDados();
+            el.classList.remove('invalid');
+          });
         }
       });
-      document.querySelectorAll('.membro, .ies-externo').forEach(el => {
-        el.addEventListener('input', salvarDados);
-        el.addEventListener('change', salvarDados);
+
+      // Membros da banca
+      document.querySelectorAll('.membro').forEach(el => {
+        el.addEventListener('input', () => {
+          salvarDados();
+          el.classList.remove('invalid');
+        });
+      });
+
+      // IES externos
+      document.querySelectorAll('.ies-externo').forEach(el => {
+        el.addEventListener('input', () => {
+          salvarDados();
+          el.classList.remove('invalid');
+        });
+      });
+
+      // Botão imprimir (com validação)
+      document.getElementById('btnImprimir').addEventListener('click', () => {
+        if (validarFormulario()) {
+          window.print();
+        }
+      });
+
+      // Botão limpar
+      document.getElementById('btnLimpar').addEventListener('click', () => {
+        if (confirm('Tem certeza que deseja limpar todos os dados? Esta ação não pode ser desfeita.')) {
+          localStorage.removeItem(STORAGE_KEY);
+          location.reload();
+        }
       });
     }
 
-    // Limpar formulário
-    document.getElementById('btnLimpar').addEventListener('click', () => {
-      if (confirm('Tem certeza que deseja limpar todos os dados? Essa ação não pode ser desfeita.')) {
-        localStorage.removeItem('reqDefesaPPGD');
-        location.reload();
-      }
-    });
-
-    // Inicialização
+    // ============ INICIALIZAÇÃO ============
     restaurarDados();
     adicionarEventos();
     autoResizeTextareas();
-    salvarDados(); // garante consistência inicial
+    salvarDados();
   })();
 </script>
 </body>
