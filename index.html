@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Requerimento de Defesa | PPGD UEPG</title>
+  <style>
+    /* ========== ESTILOS GERAIS (TELA) ========== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f7f8fb;
+      padding: 2rem 1rem;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-radius: 12px;
+    }
+    /* Cabeçalho */
+    .header-logos {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid #002855;
+    }
+    .logo-img {
+      height: 70px;
+      width: auto;
+      object-fit: contain;
+    }
+    h1 {
+      text-align: center;
+      color: #002855;
+      font-size: 1.9rem;
+      margin-bottom: 0.25rem;
+    }
+    .subtitulo {
+      text-align: center;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      color: #4a5568;
+    }
+    .intro-text {
+      margin-bottom: 1rem;
+    }
+    /* Formulário */
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      color: #002855;
+      margin-bottom: 0.3rem;
+    }
+    .required:after {
+      content: " *";
+      color: #c7362b;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.7rem;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+    .row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .row .form-group {
+      flex: 1;
+    }
+    /* Tabela da banca */
+    .banca-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    .banca-table th, .banca-table td {
+      border: 1px solid #ccc;
+      padding: 0.5rem;
+      vertical-align: top;
+    }
+    .banca-table th {
+      background: #e8f0fb;
+      color: #002855;
+    }
+    .banca-table textarea, .banca-table input {
+      width: 100%;
+      border: none;
+      background: transparent;
+      border-bottom: 1px dotted #aaa;
+      border-radius: 0;
+      padding: 0.3rem 0;
+      resize: vertical;
+    }
+    /* Data local (Ponta Grossa) */
+    .data-local {
+      text-align: right;
+      margin: 1rem 0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .data-local span {
+      font-style: italic;
+    }
+    .data-local input[type="date"] {
+      width: auto;
+      display: inline-block;
+      padding: 0.4rem 0.6rem;
+    }
+    /* Assinaturas */
+    .signatures {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .signature-box {
+      flex: 1;
+      text-align: center;
+      border-top: 1px solid black;
+      padding-top: 0.5rem;
+      min-width: 180px;
+    }
+    /* Botões */
+    .actions {
+      margin-top: 2rem;
+      text-align: center;
+      padding-top: 1rem;
+      border-top: 1px solid #ddd;
+    }
+    .btn {
+      padding: 0.7rem 1.5rem;
+      background: #002855;
+      color: white;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      font-weight: bold;
+      margin: 0 0.5rem;
+    }
+    .btn-secondary {
+      background: #c9a135;
+      color: #002855;
+    }
+
+    /* ========== IMPRESSÃO - MESMA REGRA QUE FUNCIONOU ========== */
+    @media print {
+      /* Remove tudo que não é necessário */
+      body, .container {
+        background: white;
+        padding: 0 !important;
+        margin: 0 !important;
+        box-shadow: none;
+      }
+      .container {
+        max-width: 100%;
+      }
+      .actions {
+        display: none;
+      }
+      /* Garante que nenhum elemento force quebra antes */
+      * {
+        page-break-before: auto !important;
+        page-break-after: auto !important;
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+      }
+      /* Cabeçalho não quebra depois */
+      .header-logos, h1, .subtitulo {
+        page-break-after: avoid;
+        break-after: avoid;
+      }
+      /* Inputs e textareas ganham borda inferior */
+      input, select, textarea {
+        border: none !important;
+        border-bottom: 1px solid #aaa !important;
+        border-radius: 0 !important;
+        padding: 0.2rem 0 !important;
+        background: transparent !important;
+      }
+      /* Mantém a tabela */
+      .banca-table th {
+        background: #eee !important;
+        color: black !important;
+      }
+      /* Margens da página */
+      @page {
+        margin: 1.5cm;
+      }
+      /* Data local alinhada corretamente na impressão */
+      .data-local {
+        justify-content: flex-end;
+      }
+      .data-local input[type="date"] {
+        border-bottom: 1px solid #aaa !important;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- CABEÇALHO COM LOGOS -->
+  <div class="header-logos">
+    <div><img src="ceppodi.png" alt="Ceppodi" class="logo-img" onerror="this.style.display='none'"></div>
+    <div><img src="uepg.jpg" alt="UEPG" class="logo-img" onerror="this.style.display='none'"></div>
+    <div><img src="secijur.png" alt="Secijur" class="logo-img" onerror="this.style.display='none'"></div>
+  </div>
+
+  <h1>REQUERIMENTO DE DEFESA</h1>
+  <div class="subtitulo">Mestrado em Direito – PPGD UEPG</div>
+
+  <p class="intro-text">Senhor(a) Coordenador(a),</p>
+  <p class="intro-text">Vimos, pelo presente, solicitar providências para a realização de <strong>DEFESA</strong> de Mestrado do(a) pós-graduando(a):</p>
+
+  <form id="formDefesa">
+    <div class="form-group">
+      <label class="required">NOME DO MESTRANDO</label>
+      <textarea rows="1" id="nomeMestrando" placeholder="Digite o nome completo"></textarea>
+    </div>
+    <div class="form-group">
+      <label class="required">TÍTULO DA DISSERTAÇÃO</label>
+      <textarea rows="2" id="titulo" placeholder="Digite o título"></textarea>
+    </div>
+    <div class="form-group">
+      <label>PALAVRAS-CHAVE</label>
+      <textarea rows="1" id="palavras" placeholder="Ex: Direito Penal, Processo Civil..."></textarea>
+    </div>
+    <div class="form-group">
+      <label>LINHA DE PESQUISA</label>
+      <select id="linha">
+        <option value="">Selecione...</option>
+        <option>I - Teorias e Práticas Jurídicas no Sistema Penal</option>
+        <option>II - Teorias e Práticas Jurídicas nas Relações Privadas e Socioeconômicas</option>
+        <option>III - Teorias e Práticas Jurídicas na Proteção de Direitos Fundamentais e Promoção de Políticas Públicas</option>
+      </select>
+    </div>
+    <div class="row">
+      <div class="form-group">
+        <label class="required">DATA DA DEFESA</label>
+        <input type="date" id="data">
+      </div>
+      <div class="form-group">
+        <label class="required">HORÁRIO</label>
+        <input type="time" id="hora">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>SALA / VIDEOCONFERÊNCIA</label>
+      <textarea rows="1" id="sala" placeholder="Link ou sala física"></textarea>
+    </div>
+
+    <label style="font-weight:bold; color:#002855;">MEMBROS DA BANCA (e-mail e telefones)</label>
+    <table class="banca-table">
+      <thead>
+        <tr><th>Membro (nome, telefone, e-mail)</th><th>IES / PPG</th><th>Atuação</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><textarea rows="2" class="membro" placeholder="Ex.: Prof. Dr. João Silva – (42) 99999-9999 – joao@uepg.br"></textarea></td><td>UEPG / PPG</td><td><strong>Orientador (Presidente)</strong></td></tr>
+        <tr><td><textarea rows="2" class="membro" placeholder="Nome – telefone – e-mail"></textarea></td><td>UEPG / PPG</td><td><strong>Membro Interno</strong></td></tr>
+        <tr><td><textarea rows="2" class="membro" placeholder="Nome – telefone – e-mail"></textarea></td><td><input type="text" class="ies-externo" placeholder="Ex.: UFPR"></td><td><strong>Membro Externo</strong></td></tr>
+        <tr><td><textarea rows="2" class="membro" placeholder="Nome – telefone – e-mail"></textarea></td><td>UEPG / PPG</td><td><strong>Suplente</strong></td></tr>
+      </tbody>
+    </table>
+
+    <!-- DATA DE PONTA GROSSA - CORRIGIDA (mesma linha, calendário) -->
+    <div class="data-local">
+      <span>Ponta Grossa,</span>
+      <input type="date" id="dataLocal">
+    </div>
+
+    <div class="signatures">
+      <div class="signature-box">Assinatura do Orientador</div>
+      <div class="signature-box">Assinatura do Aluno</div>
+    </div>
+  </form>
+
+  <div class="actions">
+    <button type="button" class="btn" onclick="window.print()">🖨️ Imprimir / Gerar PDF</button>
+    <button type="button" class="btn btn-secondary" id="btnLimpar">🗑️ Limpar formulário</button>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // Campos normais (incluindo dataLocal)
+    const campos = ['nomeMestrando', 'titulo', 'palavras', 'linha', 'data', 'hora', 'sala', 'dataLocal'];
+    
+    // Salvar todos os dados (incluindo tabela)
+    function salvarDados() {
+      let dados = {};
+      campos.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) dados[id] = el.value;
+      });
+      // Salvar membros (textareas da tabela)
+      let membros = [];
+      document.querySelectorAll('.membro').forEach(ta => membros.push(ta.value));
+      let iesExternos = [];
+      document.querySelectorAll('.ies-externo').forEach(inp => iesExternos.push(inp.value));
+      dados.membros = membros;
+      dados.iesExternos = iesExternos;
+      localStorage.setItem('reqDefesaPPGD', JSON.stringify(dados));
+    }
+
+    function restaurarDados() {
+      const saved = localStorage.getItem('reqDefesaPPGD');
+      if (!saved) return;
+      try {
+        const dados = JSON.parse(saved);
+        campos.forEach(id => {
+          const el = document.getElementById(id);
+          if (el && dados[id] !== undefined) el.value = dados[id];
+        });
+        if (dados.membros) {
+          document.querySelectorAll('.membro').forEach((ta, idx) => {
+            if (dados.membros[idx] !== undefined) ta.value = dados.membros[idx];
+          });
+        }
+        if (dados.iesExternos) {
+          document.querySelectorAll('.ies-externo').forEach((inp, idx) => {
+            if (dados.iesExternos[idx] !== undefined) inp.value = dados.iesExternos[idx];
+          });
+        }
+      } catch(e) {}
+    }
+
+    // Auto-resize para textareas (expansíveis)
+    function autoResizeTextareas() {
+      document.querySelectorAll('textarea').forEach(ta => {
+        ta.style.height = 'auto';
+        ta.style.height = ta.scrollHeight + 'px';
+        ta.addEventListener('input', function() {
+          this.style.height = 'auto';
+          this.style.height = this.scrollHeight + 'px';
+          salvarDados();
+        });
+      });
+    }
+
+    // Eventos para salvar automaticamente
+    function adicionarEventos() {
+      campos.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener('input', salvarDados);
+          el.addEventListener('change', salvarDados);
+        }
+      });
+      document.querySelectorAll('.membro, .ies-externo').forEach(el => {
+        el.addEventListener('input', salvarDados);
+        el.addEventListener('change', salvarDados);
+      });
+    }
+
+    // Limpar formulário
+    document.getElementById('btnLimpar').addEventListener('click', () => {
+      if (confirm('Tem certeza que deseja limpar todos os dados? Essa ação não pode ser desfeita.')) {
+        localStorage.removeItem('reqDefesaPPGD');
+        location.reload();
+      }
+    });
+
+    // Inicialização
+    restaurarDados();
+    adicionarEventos();
+    autoResizeTextareas();
+    salvarDados(); // garante consistência inicial
+  })();
+</script>
+</body>
+</html>
